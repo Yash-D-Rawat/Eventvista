@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './feedback.css';
 import axios from 'axios';
+import { feedbackapi } from '../../apiroutes';
 
 const FeedbackRating = ({organized_by}) => {
   const [feedback, setFeedback] = useState('');
@@ -12,7 +13,7 @@ const FeedbackRating = ({organized_by}) => {
 
   const handleSubmit = () => {
     if (feedback && rating) {
-        axios.put(`http://localhost:5000/feedback/${organized_by}`, { incrementValue: rating }) // Sending incrementValue in request body
+        axios.put(`${feedbackapi}/${organized_by}`, { incrementValue: rating }) // Sending incrementValue in request body
             .then(response => {
                 console.log(response.data);
                 setFeedback('');

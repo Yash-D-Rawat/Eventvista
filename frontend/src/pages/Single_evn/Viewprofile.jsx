@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import { Chip} from '@mui/material';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { host, viewprofileApi } from '../../apiroutes';
 
 function Viewprofile() {
     const { username } = useParams();
@@ -18,7 +19,7 @@ function Viewprofile() {
 
     const fetchUserProfile = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/view_profile/${username}`);
+            const response = await fetch(`${viewprofileApi}/${username}`);
             const result = await response.json();
             console.log(result.user[0]);
             
@@ -37,7 +38,7 @@ function Viewprofile() {
 
     const fetchUserEvents = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/${userData.username}`);
+            const res = await axios.get(`${host}/${userData.username}`);
             setallevents(res.data.events);
         } catch (err) {
             console.log(err);
@@ -92,7 +93,7 @@ function Viewprofile() {
 
                 {/* Right Section - Profile Card */}
                 <div className="w-full md:w-1/3 p-6 flex flex-col items-center bg-teal rounded-lg shadow-sm">
-                    <img src='https://tse2.mm.bing.net/th?id=OIP.CRkwqb1RS_yOu3Id9vMCtwHaIK&pid=Api&P=0&h=180' alt="Profile" className="w-44 h-44 rounded-full mb-4 border-green-600 border-[2px]" />
+                    <img src={userData.image ? userData.image : "/images/default.jpeg"}  alt="Profile" className="w-44 h-44 rounded-full mb-4 border-green-600 border-[2px]" />
                     <h2 className="text-xl text-white font-semibold">{userData.fullName}</h2>
                     <p className="text-white">Senior Software Engineer</p>
                     <p className="text-white">New York, USA</p>

@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import { Chip, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import Profileimage from './Profileimage';
+import { fetchuserprofileApi, host } from '../apiroutes';
 
 
 function Profile() {
@@ -18,7 +19,7 @@ function Profile() {
 
     const fetchUserProfile = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/home/profile`, {
+            const response = await fetch(fetchuserprofileApi, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -39,7 +40,7 @@ function Profile() {
 
     const fetchUserEvents = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/${userData.username}`);
+            const res = await axios.get(`${host}/${userData.username}`);
             setallevents(res.data.events);
         } catch (err) {
             console.log(err);
@@ -57,7 +58,7 @@ function Profile() {
 
     const saveChanges = async (field) => {
         try {
-            const response = await fetch(`http://localhost:5000/home/profile`, {
+            const response = await fetch(fetchuserprofileApi, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,7 +83,7 @@ function Profile() {
         if (newSkill.trim()) {
             const updatedSkills = [...userData.skills, newSkill];
             try {
-                const response = await fetch(`http://localhost:5000/home/profile`, {
+                const response = await fetch(fetchuserprofileApi, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -117,7 +118,7 @@ function Profile() {
     const handleFile = async (file) => {
         const base64 = await convertBase64(file)
         try {
-            const response = await fetch(`http://localhost:5000/home/profile`, {
+            const response = await fetch(fetchuserprofileApi, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

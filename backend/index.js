@@ -12,15 +12,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const port = 5000;
-const username = 'yashrawat2117'
-const password = 'io0CayiHwtqNCAhC'
-const mongo_url = 'mongodb+srv://yashrawat2117:io0CayiHwtqNCAhC@itl.0ok8b.mongodb.net/techofest?retryWrites=true&w=majority&appName=ITL'
+const mongo_url = process.env.mongo_url
 const app = express();
 app.use(express.json({ limit: '10mb' })); // Set a larger limit for JSON payload
 app.use(express.urlencoded({ limit: '10mb', extended: true })); // Set a larger limit for URL-encoded payloads
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow requests from this origin
+    origin: process.env.frontend_url, // Allow requests from this origin
 }));
 app.use(bodyParser.json())
 app.use('/auth',authRouter)
@@ -78,7 +76,7 @@ app.get('/:organized_by', async (req,res)=>{
     try {
         const { organized_by } = req.params;
         const event = await newevent.find({organized_by: organized_by});
-        console.log(event)
+        // console.log(event)
         return res.status(200).json({
             length: event.length,
             events: event
@@ -109,7 +107,7 @@ app.post('/host', async (req, res) => {
         }
 
         let event = await newevent.create(createevent)
-        console.log("creation");
+        // console.log("creation");
         
         return res.status(200).send(event)
 
@@ -155,10 +153,10 @@ app.put('/feedback/:username', async (req, res) => {
 app.get('/view_profile/:username', async(req,res)=>{
     try {
         const {username} = req.params;
-        console.log(username);
+        // console.log(username);
         
         const user = await userModel.find({username: username})
-        console.log(user);
+        // console.log(user);
         
         return res.status(200).json({
             success: true,

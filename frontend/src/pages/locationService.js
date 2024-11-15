@@ -1,6 +1,6 @@
-// locationService.js
+// locationService.js // Replace with your OpenCage API key
 
-const apiKey = '7aacf2de3eb7457eb8b7f85230ba5007'; // Replace with your OpenCage API key
+import { coordinateApi } from "../apiroutes";
 
 // Get user's geolocation coordinates
 export function getUserLocation() {
@@ -23,7 +23,7 @@ export function getUserLocation() {
 
 // Get city name from latitude and longitude
 export async function getCityFromCoordinates(latitude, longitude) {
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`;
+    const url = `${coordinateApi}?q=${latitude}+${longitude}&key=${import.meta.env.VITE_API_KEY}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -45,7 +45,7 @@ export async function getCityFromCoordinates(latitude, longitude) {
 
 // Get latitude and longitude from city name
 export async function getCoordinatesFromCity(city) {
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${apiKey}`;
+    const url = `${coordinateApi}?q=${city}&key=${import.meta.env.VITE_API_KEY}`;
     try {
         const response = await fetch(url);
         const data = await response.json();

@@ -13,6 +13,7 @@ import Alert from '@mui/material/Alert';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import FloatingBackground from '../../pages/Floating';
+import { fetchuserprofileApi, host } from '../../apiroutes';
 
 const COLOR = '#009086'
 
@@ -21,7 +22,7 @@ function Host() {
 
     const fetchUserProfile = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/home/profile`, {
+            const response = await fetch(fetchuserprofileApi, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -121,7 +122,7 @@ function Host() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/host', formData);
+            const response = await axios.post(`${host}/host`, formData);
             console.log('Event created:', response.data);
             handleClick();
             setFormData({

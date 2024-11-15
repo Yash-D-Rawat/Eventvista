@@ -5,7 +5,7 @@ import Chart from 'react-apexcharts';
 const SemiCircleGauge = ({rating, rating_count}) => {
     // Convert the percentage to a fraction
 
-    const fraction = `${rating/rating_count}/5`;  // Change this to whatever fraction you want to display
+    const fraction = `${(rating/rating_count).toFixed(1)}/5`;  // Change this to whatever fraction you want to display
     const numericPercentage = (rating/rating_count)*20; // 4/5 as a percentage
 
     const options = {

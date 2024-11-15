@@ -4,13 +4,14 @@ import Filterevn from '../components/eventscroll/Filterevn'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { getUserLocation, getCityFromCoordinates, getCoordinatesFromCity } from './locationService';
+import { eventsbytypeApi } from '../apiroutes';
 
 function Allevents({ type, handletype, city, handlecity }) {
     const [allevents, setallevents] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
   
     useEffect(() => {
-      axios.get(`http://localhost:5000/events/by_type/${type}/${city}`)
+      axios.get(`${eventsbytypeApi}/${type}/${city}`)
         .then((res) => {
           // Filter events based on search term if it's not empty
           const filteredEvents = searchTerm 

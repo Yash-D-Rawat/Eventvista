@@ -5,7 +5,7 @@ import { getProfile, updateProfile } from '../controllers/userController.js'
 const router = express.Router();
 
 router.get('/', ensureAuthenticated, (req,res)=>{
-    console.log(req.user)
+    // console.log(req.user)
     try {
         return res.status(200).json([
             {

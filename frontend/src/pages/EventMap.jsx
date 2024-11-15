@@ -5,6 +5,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getUserLocation, getCityFromCoordinates, getCoordinatesFromCity } from './locationService';
 import axios from 'axios';
+import { eventsbytypeApi } from '../apiroutes';
 
 // Icons for user and events
 const userIcon = new L.Icon({
@@ -21,7 +22,7 @@ function EventMap() {
     const [events, setEvents] = useState([]);
     const [allevents, setallevents] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:5000/events/by_type/all/all`).then((res) => {
+        axios.get(`${eventsbytypeApi}/all/all`).then((res) => {
             setallevents(res.data.events);
         
         }).catch((err) => {

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../utils';
 import FloatingBackground from './Floating';
+import { loginApi, signupApi } from '../apiroutes';
 
 const Login = () => {
   const [isRegistering, setIsRegistering] = useState(false);
@@ -49,7 +50,7 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/auth/login', {
+      const response = await fetch(`${loginApi}`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -78,7 +79,7 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/auth/signup', {
+      const response = await fetch(`${signupApi}`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userInfo)

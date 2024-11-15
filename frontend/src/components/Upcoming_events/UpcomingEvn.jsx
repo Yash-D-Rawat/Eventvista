@@ -4,6 +4,7 @@ import 'react-multi-carousel/lib/styles.css';
 import Carousel from 'react-multi-carousel';
 import { FaCircleChevronLeft, FaCircleChevronRight } from 'react-icons/fa6';
 import axios from 'axios';
+import { host } from '../../apiroutes';
 
 const responsive = {
     superLargeDesktop: {
@@ -70,7 +71,7 @@ const CustomRightArrow = ({ onClick }) => (
 function UpcomingEvn() {
     const [featuredevents, setfeaturedevents] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/').then((res) => {
+        axios.get(`${host}/`).then((res) => {
             setfeaturedevents(res.data.events);
         }).catch((err)=>{
             console.log(err);

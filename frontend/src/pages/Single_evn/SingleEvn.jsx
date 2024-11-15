@@ -5,13 +5,14 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
 import FloatingBackground from '../Floating';
+import { eventbyidApi } from '../../apiroutes';
 
 const SingleEvn = () => {
   const { id } = useParams();
   const [event, setevent] = useState(null);
   console.log(id)
   useEffect(() => {
-    axios.get(`http://localhost:5000/events/by_id/${id}`).then((res) => {
+    axios.get(`${eventbyidApi}/${id}`).then((res) => {
       console.log(res)
       setevent(res.data.events)
     }).catch((err) => {
