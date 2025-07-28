@@ -14,10 +14,13 @@ Eventvista is a full-stack MERN (MongoDB, Express, React, Node.js) application d
 
 ## Features
 
-* **Event Management**: Users can discover college events with features for event creation, filtering, and user ratings. 
-* **Performance Optimization**: The application is containerized with Docker and configured with NGINX. 
-* **High Concurrency Support**: Achieved an average response time of 600ms while supporting 400 concurrent users in K6 load tests. 
-* **Data Integrity**: Handles high-load event registrations with atomic transactions to ensure data integrity and prevent race conditions. 
+* **Advanced Event Filtering**: Filter events based on categories (Tech, Cultural, Sports, etc.), location, date, and mode (online/offline). This helps users quickly find events relevant to their interests and availability.
+* **Interactive Event Map**: Integrated map view (via Leaflet or Mapbox) that displays all upcoming events with real-time geolocation markers. Clicking on a pin shows basic event details and links to the event page.
+* **JWT Authentication**: Secure login and session handling using JSON Web Tokens (JWT). Ensures that sensitive user actions (like event creation, rating, or profile editing) are protected.
+* **Dynamic Event Posting System**: Registered users can create detailed event listings, including title, description, category, location, date/time, and image upload. Events can later be edited or deleted by the creator.
+* **Live Rating and Feedback System**: Attendees can leave a rating and short review for events they've attended. Ratings are averaged and updated in real time on the event cards and detail pages.
+* **User Profile Management**: Users can update their personal information, view their posted events, and track events they've rated. Profile ratings reflect their credibility as contributors/attendees.
+* **Clean and Responsive UI**: Built with React.js + Tailwind CSS for a fast, mobile-first experience with minimalistic design and smooth navigation.
 
 ## Technologies Used
 
